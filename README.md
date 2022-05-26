@@ -1,2 +1,1 @@
-#!/bin/bash instructs the OS to use bash as a command interpreter
-echo pwd prints the current working directory
+This project is all about learning how to code in order to become a certified Software engineer
