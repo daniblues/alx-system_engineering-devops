@@ -1,1 +1,1 @@
-script
+Shell permissions basics
