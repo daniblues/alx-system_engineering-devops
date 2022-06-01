@@ -1,59 +1,29 @@
-Learning Objectives
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google: General
-What happens when you type $ ls -l *.txt
-Shell Initialization Files
-What are the /etc/profile file and the /etc/profile.d directory
-What is the ~/.bashrc file
-Variables
-What is the difference between a local and a global variable
-What is a reserved variable
-How to create, update and delete shell variables
-What are the roles of the following reserved variables: HOME, PATH, PS1
-What are special parameters
-What is the special parameter $??
-Expansions
-What is expansion and how to use them
-What is the difference between single and double quotes and how to use them properly
-How to do command substitution with $() and backticks
-Shell Arithmetic
-How to perform arithmetic operations with the shell
-The alias Command
-How to create an alias
-How to list aliases
-How to temporarily disable an alias
-Other help pages
-How to execute commands from a file in the current shell
-Requirements General
-Allowed editors: vi, vim, emacs
-All your scripts will be tested on Ubuntu 14.04 LTS
-All your scripts should be exactly two lines long ($ wc -l file should print 2)
-All your files should end with a new line (why?)
-The first line of all your files should be exactly #!/bin/bash
-A README.md file, at the root of the folder of the project, describing what each script is doing
-You are not allowed to use &&, || or ;
-You are not allowed to use bc, sed or awk
-All your files must be executable
-More Info
-Read your /etc/profile, /etc/inputrc and ~/.bashrc files.
-Look at some files in the /etc/profile.d directory.
-Note: You do not have to learn about awk, tar, bzip2, date, scp, ulimit, umask, or shell scripting, yet.
-What each of the scripts does:
-#!/bin/bash (which is always the first line) instructs the operating system to use bash as a command interpreter.
-alias ls="rm *" creates an alias with name "ls" and value "rm*"
-echo "hello $USER" Prints hello user, where user is the current Linux user.
-PATH=$PATH:/action Adds /action to the PATH. /action should be the last directory the shell looks into when looking for a program
-echo $PATH | tr ":" "\n" | wc -l Counts the number of the directories in the PATH
-printenv Lists environment variables
-set Lists all local variables and environment variables, and functions.
-BEST="School" Creates a new local variable named BEST with a value "School".
-export BEST="School" Creates a new global variable named "BEST" with a value "School".
-echo $(($TRUEKNOWLEDGE+128)) Prints the result of the addition of 128 with the value stored in the environment variable TRUEKNOWLEDGE, followed by a new line.
-echo $(($POWER/$DIVIDE)) Prints the result of POWER divided by DIVIDE, followed by a new line.
-echo $(($BREATH**$LOVE)) Displays the result of BREATH to the power LOVE.
-echo $((2#$BINARY)) Converts a number from base 2 to base 10.
-echo {a..z}{a..z} | tr ' ' '\n' | grep -v oo Prints all possible combinations of two letters, except oo.
-printf "%0.2f\n" $NUM Prints a number with two decimal places. The number is stored in the environment variable NUM.
-printf "%x\n" $DECIMAL Converts a number from base 10 to base 16.
-tr 'A-Za-z' 'N-ZA-Mn-za-m' Encodes and decodes text using the rot13 encryption
-paste -d" " - - | cut -d " " -f 1 Prints every other line from the input, starting with the first line
-echo $(printf %o $(($((5#$(echo $WATER | tr 'water' '01234'))) + $((5#$(echo $STIR | tr 'stir.' '01234'))))) | tr '01234567' 'bestchol') Adds the two numbers stored in the environment variables WATER and STIR and prints the result
+WHAT EACH SCIPT DOES
+#!/bin/bash :instructs the operating system to use bash as a command interpreter.
+echo Hello, World :Prints "Hello, World", followed by a new line to the standard output.
+echo "\"(Ôo)'"  :Displays a confused smiley "(Ôo)'
+cat /etc/passwd  :Displays the content of the /etc/passwdfile
+cat /etc/passwd /etc/hosts :Displays the content of /etc/passwd and /etc/hosts
+tail /etc/passwd  :Displays the last 10 lines of /etc/passwd
+head /etc/passwd  :Displays the first 10 lines of /etc/passwd
+head --lines=3 iacta | tail --lines=1  :Displays the third line of the file iacta
+echo "Best School" > "\*\\\'\"Best School\"\'\\\*$\?\*\*\*\*\*:)"	Creates a file named exactly \*\\'"Best School"\'\\*$\?\*\*\*\*\*:) containing the test Best School ending by a new line
+ls -la > ls_cwd_content	:Writes into the file ls_cwd_content the result of the command ls -la.
+echo -en "" | tail --lines=1 iacta >> iacta	:Duplicates the last line of the file iacta
+find . -name '*.js' -type f -delete	:Deletes all the regular files with a .js extension that are present in the current directory and all its subfolders
+find -mindepth 1 -type d | wc -l	:Counts the number of directories and sub-directories in the current directory
+ls -t | head	:Displays the 10 newest files in the current directory
+sort | uniq -u	:Takes a list of words as input and prints only words that appear exactly once
+grep -i root /etc/passwd	:Displayes lines containing the pattern "root" from the file /etc/passwd
+grep -i bin /etc/passwd | wc -l	:Displays the number of lines that contain the pattern "bin" in the file /etc/passwd
+grep -iA 3 root /etc/passwd	:Displays lines containing the pattern "root" and 3 lines after them in the file /etc/passwd
+grep -iv bin /etc/passwd	:Displays all the lines in the file /etc/passwd that do not contain the pattern "bin"
+grep -i "^[a-z]" /etc/ssh/sshd_config	:Displays all lines of the file /etc/ssh/sshd_config starting with a letter
+tr Ac Ze	:Replaces all characters A and c from input to Z and e respectively
+tr -d cC	:Removes all letters c and C from input
+rev	:Reverses its input
+cut -d':' -f1,6 /etc/passwd | sort	:Displays all users and their home directories, sorted by users.
+find . -empty -printf "%f\n"	:Finds all empty files and directories in the current directory and all sub-directories
+find . -name \*.gif -type f -printf "%f\n" | LC_COLLATE=C sort --ignore-case | rev | cut -c 5- | rev	:Lists all the files with a .gif extension in the current directory and all its sub-directories
+cut -c 1 | tr -d '\n' | sort	:Decodes acrostics that use the first letter of each line
+cut -f1 -d$'\t' | sort | uniq -c | tr -s ' ' | sort -t' ' -k1 -nr | head -11 | cut -d' ' -f3	:Parses web servers in TSV format as input and displays the 11 hosts or IP addresses which did the most requests
