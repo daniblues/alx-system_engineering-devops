@@ -1,4 +1,4 @@
-WHAT EACH SCIPT DOES
+WHAT EACH SCRIPT DOES
 #!/bin/bash :instructs the operating system to use bash as a command interpreter.
 echo Hello, World :Prints "Hello, World", followed by a new line to the standard output.
 echo "\"(Ôo)'"  :Displays a confused smiley "(Ôo)'
