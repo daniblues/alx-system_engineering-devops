@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
-#Bash script that displays a list of current processes
-ps -aux --forest
+# This script displays a list of currently running processes.
+# Must show all processes, for all users.
+# Displays a user-oriented format.
+# Shows process hierarchy.
+ps -auxf
